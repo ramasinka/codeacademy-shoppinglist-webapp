@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
+
 </head>
 
 <body>
@@ -37,14 +38,12 @@
 <!-- Page Content -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-md-3">
             <table class="table  table-inverse"
                    data-sort-name="name"
                    style="height: 200px" style="width: 400px" id="tableLists">
-                <h1 class="my-4">List Name</h1>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newList">New List
-                </button>
-                <br><br>
+                <h1>List Name</h1>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newList" style="margin-bottom: 10px">New List</button>
                 <thead>
                 <tr>
                     <th data-field="state" data-checkbox="true"></th>
@@ -63,86 +62,81 @@
                     <th data-field="action" data-formatter="actionListFormatter" data-events="actionEvents">Action</th>
                 </tr>
                 </thead>
-
-                <%--<a href="#" class="list-group-item" id="shopList"></a>--%>
-                <%-- <a href="#" class="list-group-item">Category 2</a>
-                 <a href="#" class="list-group-item">Category 3</a>--%>
             </table>
-
         </div>
-        <!-- /.col-lg-3 -->
-        <%--https://github.com/wenzhixin/bootstrap-table-examples/blob/master/options/disabled-checkbox.html--%>
-        <div class="col-lg-9">
+
+        <div class="col-md-8">
             <h1>Product Items</h1>
-            <label id="listNameToDisplay"></label>
             <div id="toolbar">
-                <button id="addButton" class="btn btn-default" data-toggle="modal" data-target="#newItem">Add item
+                <button id="addButton" class="btn btn-default" data-toggle="modal" data-target="#newItem" style="margin-bottom: 10px">Add item
                 </button>
+                <label id="listNameToDisplay"></label>
             </div>
-            <div class="card mt-4">
-                <table class="table  table-inverse"
-                       data-search="true"
-                       data-toolbar="#toolbar"
-                       data-sort-name="name"
-                       style="height: 200px" style="width: 400px" id="table">
-                    <%--   <table data-toggle="table"
-                              data-height="300"
-                              data-url="/getProductItems/11"
-                              data-search="true">--%>
-                    <thead>
-                    <tr>
-                        <th data-field="id">#</th>
-                        <th data-field="name" data-sortable="true">Name</th>
-                        <th data-field="amount" data-sortable="true">Amount</th>
-                        <th data-field="price" data-sortable="true">Price</th>
-                        <th data-field="action" data-formatter="actionItemFormatter" data-events="actionEvents">Action
-                        </th>
-                    </tr>
-                    </thead>
-                </table>
 
-                <h3 class="card-title" id="item-sum"></h3>
-
-
-                <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
-                <div class="card-body">
-                    <h3 class="card-title">Product Name</h3>
-                    <h4>$24.99</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit
-                        fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur
-                        praesentium animi perspiciatis molestias iure, ducimus!</p>
-                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                    4.0 stars
-                </div>
-            </div>
-            <!-- /.card -->
-
-            <div class="card card-outline-secondary my-4">
-                <div class="card-header">
-                    Product Reviews
-                </div>
-                <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
-                        similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum.
-                        Sequi mollitia, necessitatibus quae sint natus.</p>
-                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
-                        similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum.
-                        Sequi mollitia, necessitatibus quae sint natus.</p>
-                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
-                        similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum.
-                        Sequi mollitia, necessitatibus quae sint natus.</p>
-                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <a href="#" class="btn btn-success">Leave a Review</a>
-                </div>
-            </div>
+            <table class="table  table-inverse"
+                   data-search="true"
+                   data-toolbar="#toolbar"
+                   data-sort-name="name"
+                   style="height: 200px" style="width: 400px" id="table">
+                <thead>
+                <tr>
+                    <th data-field="id">#</th>
+                    <th data-field="name" data-sortable="true">Name</th>
+                    <th data-field="amount" data-sortable="true">Amount</th>
+                    <th data-field="price" data-sortable="true">Price</th>
+                    <th data-field="action" data-formatter="actionItemFormatter" data-events="actionEvents">Action
+                    </th>
+                </tr>
+                </thead>
+            </table>
+            <h3 id="item-sum"></h3>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+
+    </div>
 </div>
+
+<%-- <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+ <div class="card-body">
+     <h3 class="card-title">Product Name</h3>
+     <h4>$24.99</h4>
+     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit
+         fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur
+         praesentium animi perspiciatis molestias iure, ducimus!</p>
+     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+     4.0 stars
+ </div>
+<!-- /.card -->
+
+<div class="card card-outline-secondary my-4">
+ <div class="card-header">
+     Product Reviews
+ </div>
+ <div class="card-body">
+     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
+         similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum.
+         Sequi mollitia, necessitatibus quae sint natus.</p>
+     <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+     <hr>
+     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
+         similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum.
+         Sequi mollitia, necessitatibus quae sint natus.</p>
+     <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+     <hr>
+     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
+         similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum.
+         Sequi mollitia, necessitatibus quae sint natus.</p>
+     <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+     <hr>
+     <a href="#" class="btn btn-success">Leave a Review</a>
+ </div>
+</div>
+</div>--%>
 
 <!-- NewListModal -->
 <div class="modal fade" id="newList" role="dialog">

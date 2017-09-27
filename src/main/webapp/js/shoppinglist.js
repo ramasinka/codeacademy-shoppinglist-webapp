@@ -1,20 +1,5 @@
 "<script type='text/javascript' src='productitem.js'></script>"
 
-/*$(document).ready(function () {
-    var userId = sessionStorage.getItem("userId");
-    $.getJSON("/getShoppingLists/" + userId, function (json) {
-        for (var i = 0; i < json.length; i++) {
-            var name = json[i].name;
-            var id = json[i].id;
-
-            $("#shopList").append('<tr><td onclick="getItemsByShoppingList(id)" id =' + id + '>' + name +
-                '&nbsp; <td onclick="removeShoppingList(id)" id=' + id + '><span class="glyphicon glyphicon-trash" ></span></td> ' +
-                '&nbsp; <td onclick="appendData(id)" id=' + id + ' data-toggle="modal" data-target="#editList"><span class="glyphicon glyphicon-list-alt"></span></td>');
-            $("#shopList").append('</tr></td>');
-        }
-    });
-});*/
-
 $(document).ready(function () {
     var userId = sessionStorage.getItem("userId");
     $.getJSON("/getShoppingLists/" + userId, function (json) {
@@ -23,16 +8,24 @@ $(document).ready(function () {
         });
         if (json.length !== 0) {
             var listId = sessionStorage.getItem("listId");
-            if (listId !== null) {
+        /*    if (listId != null) {
                 getItemsByShoppingList(listId);
-            } else {
+                console.log(listId);
+            } else {*/
+                console.log(json[0]);
                 getItemsByShoppingList(json[0].id);
-                sessionStorage.setItem("listId", json[0].id)
+                sessionStorage.setItem("listId", json[0].id);
                 appendData(listId, json[0].name)
-            }
+            // }
         }
     });
 });
+
+function appendData(id, listName) {
+    $("#listid").val(id);
+    $("#listNameToDisplay").empty();
+    $("#listNameToDisplay").append("Current list: " + listName);
+};
 
 function removeShoppingList(id) {
     var r = confirm("Are you sure to delete this shopping list?");
@@ -52,14 +45,6 @@ function createShoppingList(listName) {
         location.reload());
 }
 
-function editShoppingList(id) {
-    // $("#editList").empty();
-    // $("#editList").append("<tr><td>");
-    // $("#editList").append("<input type='text' name='updateList' placeholder='enter new list name' id='updateList'></input>");
-    // $("#editList").append('<button class="btn btn-info" id=' + id + ' type="button" name="" onclick="updateShoppingList(id)">Update </button>');
-    // $("#editList").append("</tr></td>");
-}
-
 function updateShoppingList(listName, id) {
     $.post(
         "/updateShoppingList",
@@ -67,14 +52,7 @@ function updateShoppingList(listName, id) {
         location.reload());
 }
 
-function appendData(id, listName) {
-    $("#listid").val(id);
-    $("#listNameToDisplay").empty();
-    $("#listNameToDisplay").append("Current list: " + listName);
-};
-
-
-function actionListFormatter(value, row, index) {
+function actionListFormatter() {
     return [
         '<a class="listItems ml10" href="javascript:void(0)" title="Items">',
         '<i class="glyphicon glyphicon-th-list"></i>',

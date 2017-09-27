@@ -56,4 +56,12 @@ public class ShareController {
         List<ShoppingList> sharedShoppingLists = shareService.findSharedShoppingLists(userId);
         return shoppingListDtoService.convertToShoppingListDtoList(sharedShoppingLists);
     }
+
+  /*  @RequestMapping(value = "/removeSharedList/{userId}", method = RequestMethod.POST, produces = APPLICATION_JSON)
+    @ResponseBody
+    public void removeSharedList(@PathVariable long userId) {
+        shareService.removeSharedList(userId);
+        return shoppingListDtoService.convertToShoppingListDtoList(sharedShoppingLists);
+    }*/
+
 }

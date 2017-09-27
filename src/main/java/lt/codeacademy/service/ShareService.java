@@ -59,4 +59,8 @@ public class ShareService {
     public List<ShoppingList> findSharedShoppingLists(long userId) {
         return shareRepository.findSharedShoppingLists(userId);
     }
+
+    public void removeSharedList(long userId) {
+
+    }
 }
