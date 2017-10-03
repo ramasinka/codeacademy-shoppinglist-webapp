@@ -3,6 +3,8 @@ package lt.codeacademy.service;
 
 import lt.codeacademy.dao.UserRepository;
 import lt.codeacademy.model.User;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,7 +13,10 @@ import javax.annotation.Resource;
 public class UserService {
 
     @Resource
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Resource
+    private Md5PasswordEncoder passwordEncoder;
 
     public boolean userExistsByEmail(String email) {
         User user = userRepository.findUserByEmail(email);
@@ -23,5 +28,10 @@ public class UserService {
 
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
+    }
+
+    public User save(User user) {
+        user.setPassword(passwordEncoder.encodePassword(user.getPassword(), user));
+        return userRepository.save(user);
     }
 }

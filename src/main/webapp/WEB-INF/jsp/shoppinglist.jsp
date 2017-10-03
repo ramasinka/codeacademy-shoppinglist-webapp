@@ -153,7 +153,7 @@
                                class="form-listname form-control" id="form-listname">
                     </div>
                     <button type="submit" class="btn"
-                            onclick="createShoppingList(document.getElementById('form-listname'))">Create
+                            onclick="createShoppingList(document.getElementById('form-listname'), <%= session.getAttribute("username") %>)">Create
                     </button>
                 </div>
             </div>

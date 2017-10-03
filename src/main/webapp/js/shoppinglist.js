@@ -37,11 +37,11 @@ function removeShoppingList(id) {
     location.reload();
 }
 
-function createShoppingList(listName) {
+function createShoppingList(listName, userId) {
     var listNameValue = listName.value;
     $.post(
         "/createShoppingList",
-        {listName: listNameValue, userId: sessionStorage.getItem("userId")},
+        {listName: listNameValue, userId: userId},
         location.reload());
 }
 

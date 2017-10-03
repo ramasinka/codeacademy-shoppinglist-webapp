@@ -20,6 +20,9 @@
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#news">Look news</button>
     <div id="news" class="collapse">
         I LOVE JAVA
+
+        <td>Username: </td>
+        <td><input type="text" value="<%= session.getAttribute("username") %>" /></td>
     </div>
 
 </div>

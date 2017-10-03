@@ -2,20 +2,23 @@ package lt.codeacademy.controllers;
 
 import lt.codeacademy.dao.UserRepository;
 import lt.codeacademy.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lt.codeacademy.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class UserController {
 
-    @Autowired
-    @Qualifier("userRepository")
+    @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private UserService userService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET,
             produces = "application/json")
@@ -33,13 +36,12 @@ public class UserController {
         return userRepository.findOne(userId);
     }
 
+
     @RequestMapping(value = "/user", method = RequestMethod.POST,
             produces = "application/json")
     @ResponseBody
-    public User createUser(@RequestParam String name,
-                           @RequestParam String email,
-                           @RequestParam String password) {
-        return userRepository.save(new User(name, password, email));
+    public User createUser(@RequestBody User user) {
+        return userService.save(user);
     }
 
     @RequestMapping(value = "/user/{userName}/{userPassword}", method = RequestMethod.GET,
@@ -50,11 +52,5 @@ public class UserController {
         return userRepository.findUserByNameAndPassword(userName, userPassword);
     }
 
-    @RequestMapping(value = "/login/{name}/{password}", method = RequestMethod.GET,
-            produces = "application/json")
-    @ResponseBody
-    public User checkUser(@PathVariable String name,
-                          @PathVariable String password) {
-        return userRepository.findUserByNameAndPassword(name, password);
-    }
+
 }
