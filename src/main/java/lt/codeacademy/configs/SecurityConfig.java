@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -39,7 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${spring.queries.roles-query}")
     private String rolesQuery;
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
@@ -57,10 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(securityFailureHandler)
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-                .and().exceptionHandling().accessDeniedPage("/access-denied")
-                .and().csrf().disable();
-
+                .and().exceptionHandling().accessDeniedPage("/access-denied");
+//                .and().csrf();
     }
+
 
 
     @Override
@@ -73,16 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .passwordEncoder(encoder())
+        auth.eraseCredentials(false).
+                jdbcAuthentication().dataSource(dataSource)
+//                .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery(usersQuery)
                 .authoritiesByUsernameQuery(rolesQuery);
-    }
-
-    @Bean
-    public Md5PasswordEncoder encoder() {
-        Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-        return encoder;
     }
 }

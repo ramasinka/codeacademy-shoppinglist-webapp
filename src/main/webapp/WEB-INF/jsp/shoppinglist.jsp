@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
-
 </head>
 
 <body>
@@ -43,7 +42,9 @@
                    data-sort-name="name"
                    style="height: 200px" style="width: 400px" id="tableLists">
                 <h1>List Name</h1>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newList" style="margin-bottom: 10px">New List</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newList"
+                        style="margin-bottom: 10px">New List
+                </button>
                 <thead>
                 <tr>
                     <th data-field="state" data-checkbox="true"></th>
@@ -68,7 +69,8 @@
         <div class="col-md-8">
             <h1>Product Items</h1>
             <div id="toolbar">
-                <button id="addButton" class="btn btn-default" data-toggle="modal" data-target="#newItem" style="margin-bottom: 10px">Add item
+                <button id="addButton" class="btn btn-default" data-toggle="modal" data-target="#newItem"
+                        style="margin-bottom: 10px">Add item
                 </button>
                 <label id="listNameToDisplay"></label>
             </div>
@@ -153,7 +155,8 @@
                                class="form-listname form-control" id="form-listname">
                     </div>
                     <button type="submit" class="btn"
-                            onclick="createShoppingList(document.getElementById('form-listname'), <%= session.getAttribute("username") %>)">Create
+                            onclick="createShoppingList(document.getElementById('form-listname'), <%= session.getAttribute("username") %>)">
+                        Create
                     </button>
                 </div>
             </div>
@@ -386,6 +389,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
 
 <script>
+
+    $(document).ready(function () {
+        $("#userid").val;
+        var userId = '<%=session.getAttribute("userid")%>';
+        $.getJSON("/getShoppingLists/" + userId, function (json) {
+            $('#tableLists').bootstrapTable({
+                data: json
+            });
+            if (json.length !== 0) {
+                var listId = sessionStorage.getItem("listId");
+                /*    if (listId != null) {
+                        getItemsByShoppingList(listId);
+                        console.log(listId);
+                    } else {*/
+                console.log(json[0]);
+                getItemsByShoppingList(json[0].id);
+                sessionStorage.setItem("listId", json[0].id);
+                appendData(listId, json[0].name)
+                // }
+            }
+        });
+    });
+
     $(function () {
         var action;
         $(".number-spinner button").mousedown(function () {

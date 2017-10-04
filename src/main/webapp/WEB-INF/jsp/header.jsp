@@ -51,7 +51,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/" onclick="logOut()"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                <li><a href="/logout" onclick="logOut()"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
             </ul>
         </div>
     </div>
@@ -63,6 +63,8 @@
 
 <script>
     function logOut() {
+        //Remove session
+        '<$session = null$>'
         sessionStorage.removeItem("listId");
         sessionStorage.removeItem("userId");
     }

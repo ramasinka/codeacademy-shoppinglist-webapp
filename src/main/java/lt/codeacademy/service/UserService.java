@@ -16,7 +16,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Resource
-    private Md5PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     public boolean userExistsByEmail(String email) {
         User user = userRepository.findUserByEmail(email);
@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public User save(User user) {
-        user.setPassword(passwordEncoder.encodePassword(user.getPassword(), user));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 }

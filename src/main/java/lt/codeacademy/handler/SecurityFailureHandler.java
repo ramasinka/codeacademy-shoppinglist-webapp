@@ -13,6 +13,6 @@ public class SecurityFailureHandler extends SimpleUrlAuthenticationFailureHandle
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
 
-        System.out.println(exception.getMessage());
+        throw new RuntimeException("User name or password wrong");
     }
 }

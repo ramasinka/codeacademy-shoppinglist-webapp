@@ -1,25 +1,6 @@
+
 "<script type='text/javascript' src='productitem.js'></script>"
 
-$(document).ready(function () {
-    var userId = sessionStorage.getItem("userId");
-    $.getJSON("/getShoppingLists/" + userId, function (json) {
-        $('#tableLists').bootstrapTable({
-            data: json
-        });
-        if (json.length !== 0) {
-            var listId = sessionStorage.getItem("listId");
-        /*    if (listId != null) {
-                getItemsByShoppingList(listId);
-                console.log(listId);
-            } else {*/
-                console.log(json[0]);
-                getItemsByShoppingList(json[0].id);
-                sessionStorage.setItem("listId", json[0].id);
-                appendData(listId, json[0].name)
-            // }
-        }
-    });
-});
 
 function appendData(id, listName) {
     $("#listid").val(id);

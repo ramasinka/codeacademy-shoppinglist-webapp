@@ -29,8 +29,8 @@
     </schema>
     <schema id="9" parent="2" name="codeacademy">
       <ObjectId>16393</ObjectId>
-      <IntrospectionTimestamp>2017-10-02.09:45:48.342</IntrospectionTimestamp>
-      <IntrospectionStateNumber>2277</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-10-04.08:38:50.376</IntrospectionTimestamp>
+      <IntrospectionStateNumber>2285</IntrospectionStateNumber>
       <Visible>1</Visible>
     </schema>
     <schema id="10" parent="2" name="bookshop">
@@ -116,7 +116,7 @@
     </table>
     <table id="30" parent="9" name="users">
       <ObjectId>25970</ObjectId>
-      <StateNumber>2277</StateNumber>
+      <StateNumber>2284</StateNumber>
     </table>
     <table id="31" parent="9" name="users_roles">
       <ObjectId>26002</ObjectId>
@@ -611,8 +611,9 @@
     </column>
     <column id="120" parent="30" name="password">
       <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>1982</StateNumber>
+      <DataType>varchar(60)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>2285</StateNumber>
     </column>
     <index id="121" parent="30" name="users_pkey">
       <ObjectId>25976</ObjectId>
