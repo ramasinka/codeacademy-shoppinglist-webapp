@@ -1,0 +1,39 @@
+server:
+    port: 8083
+    session:
+      cookie:
+        name: UI2SESSION
+security:
+  basic:
+    enabled: false
+  oauth2:
+#    client:
+#      clientId: ClientId
+#      clientSecret: secret
+#      accessTokenUri: http://localhost:8081/auth/oauth/token
+#      userAuthorizationUri: http://localhost:8081/auth/oauth/authorize
+#    resource:
+#      userInfoUri: http://localhost:8081/auth/rest/hello/principal
+    client:
+      clientId: 1469462513136640
+      clientSecret: b6fbb59d07dde2bf71eb70088438d2dc
+      accessTokenUri: https://graph.facebook.com/oauth/access_token
+      userAuthorizationUri: https://graph.facebook.com/oauth/authorize
+      preEstablishedRedirectUriL: https://localhost:8083
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://graph.facebook.com/me
+#facebook:
+#  client:
+#    clientId: 1469462513136640
+#    clientSecret: b6fbb59d07dde2bf71eb70088438d2dc
+#    accessTokenUri: https://graph.facebook.com/oauth/access_token
+#    userAuthorizationUri: https://graph.facebook.com/oauth/authorize
+#    tokenName: oauth_token
+#    authenticationScheme: query
+#    clientAuthenticationScheme: form
+#  resource:
+#    userInfoUri: https://graph.facebook.com/me
+

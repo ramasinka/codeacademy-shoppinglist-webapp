@@ -46,21 +46,3 @@ function ShareSummary(userId, listId, email) {
     this.email = email;
 }
 
-$(document).ready(function () {
-    var userId = sessionStorage.getItem("userId");
-    $.getJSON("/getSharedList/" + userId, function (json) {
-        $('#sharedTableLists').bootstrapTable({
-            data: json
-        });
-/*        if (json.length !== 0) {
-            var listId = sessionStorage.getItem("listId");
-            if (listId !== null) {
-                getItemsByShoppingList(listId);
-            } else {
-                getItemsByShoppingList(json[0].id);
-                sessionStorage.setItem("listId", json[0].id)
-                appendData(listId, json[0].name)
-            }
-        }*/
-    });
-});

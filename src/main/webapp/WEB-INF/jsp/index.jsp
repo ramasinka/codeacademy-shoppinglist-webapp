@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <form action="/login" method="post">
+            <form action="/login" method="post" id="login-form">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3 form-box">
                         <div class="form-top">
@@ -72,19 +72,26 @@
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}"
                                    value="${_csrf.token}"/>
-                            <button type="submit" class="btn">Sign in!</button>
                         </div>
                     </div>
+
                 </div>
             </form>
+            <div class="row">
+                <button type="submit" class="btn" onclick="document.forms['login-form'].submit()">Sign in!</button>
+                <button type="submit" class="btn" onclick="window.location='/registration'">Register</button>
+            </div>
+
 
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 social-login">
                     <h3>...or login with:</h3>
                     <div class="social-login-buttons">
-                        <a class="btn btn-link-1 btn-link-1-facebook" href="#">
-                            <i class="fa fa-facebook"></i> Facebook
-                        </a>
+                        <form action="/login/facebook" method="POST">
+                            <input type="hidden" name="scope" value="public_profile" />
+                            <input type="submit" value="Login using Facebook" class="btn btn-primary" />
+
+                        </form>
                         <a class="btn btn-link-1 btn-link-1-twitter" href="#">
                             <i class="fa fa-twitter"></i> Twitter
                         </a>

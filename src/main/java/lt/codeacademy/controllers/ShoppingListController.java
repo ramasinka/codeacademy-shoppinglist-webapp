@@ -30,6 +30,17 @@ public class ShoppingListController {
     @Resource
     private ShoppingListDtoService shoppingListDtoService;
 
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/getShoppingLists", method = RequestMethod.GET, produces = APPLICATION_JSON)
+    @ResponseBody
+    public List<ShoppingListDto> getAllShoppingLists() {
+        List<ShoppingList> shoppingLists = (List<ShoppingList>) shoppingListRepository.findAll();
+        List<ShoppingListDto> shoppingListDtos = shoppingListDtoService.convertToShoppingListDtoList(shoppingLists);
+        return shoppingListDtos;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/getShoppingList/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseBody
     public ShoppingListDto getShoppingList(@PathVariable long id) {

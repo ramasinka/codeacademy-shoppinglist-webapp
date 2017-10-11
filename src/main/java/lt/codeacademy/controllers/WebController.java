@@ -3,19 +3,18 @@ package lt.codeacademy.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class WebController {
 
     @GetMapping("/")
-    public String indexPage() {
+    public String indexPage(HttpServletRequest request) {
+        if (request.getSession().getAttribute("userid") != null) {
+            return "main";
+        }
         return "index";
     }
-
-    @GetMapping("/test")
-    public String test() {
-        return "login";
-    }
-
 
     @GetMapping("/login")
     public String loginPage() {
@@ -35,5 +34,10 @@ public class WebController {
     @GetMapping("/shareHistory")
     public String shareHistoryPage() {
         return "sharehistory";
+    }
+
+    @GetMapping("/registration")
+    public String registerPage() {
+        return "register";
     }
 }

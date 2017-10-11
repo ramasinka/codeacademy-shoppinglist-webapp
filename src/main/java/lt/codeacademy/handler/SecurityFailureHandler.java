@@ -12,7 +12,6 @@ public class SecurityFailureHandler extends SimpleUrlAuthenticationFailureHandle
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
-
         throw new RuntimeException("User name or password wrong");
     }
 }

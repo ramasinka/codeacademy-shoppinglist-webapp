@@ -31,6 +31,7 @@ public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
 
         session.setAttribute("username", userName);
         session.setAttribute("userid", userId);
+        session.setAttribute("user", authUser);
 
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         httpServletResponse.sendRedirect("/main");

@@ -20,11 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Shop Item - Start Bootstrap Template</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
@@ -384,15 +381,11 @@
 <script src="../../vendor/bootstrap/js/bootstrap-table.js"></script>
 <script src="../../vendor/bootstrap/css/bootstrap-table.css"></script>
 <script src="../../css/spiner.css"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css"
-      rel="stylesheet" type="text/css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
 
 <script>
+    var userId = '<%=session.getAttribute("userid")%>';
 
     $(document).ready(function () {
-        $("#userid").val;
-        var userId = '<%=session.getAttribute("userid")%>';
         $.getJSON("/getShoppingLists/" + userId, function (json) {
             $('#tableLists').bootstrapTable({
                 data: json
@@ -410,6 +403,16 @@
                 // }
             }
         });
+
+        $.getJSON("/getSharedList/" + userId, function (json) {
+            $('#sharedTableLists').bootstrapTable({
+                data: json
+            });
+        });
+
+
+
+
     });
 
     $(function () {

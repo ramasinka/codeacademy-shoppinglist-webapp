@@ -22,7 +22,9 @@
         I LOVE JAVA
 
         <td>Username: </td>
-        <td><input type="text" value="<%= session.getAttribute("username") %>" /></td>
+        <%--<td><input type="text" value="<%= session.getAttribute("username") %>" /></td>--%>
+        <%--<td><input type="text" value="${#authentication.name}" /></td>--%>
+
     </div>
 
 </div>
