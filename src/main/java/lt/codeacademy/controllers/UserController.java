@@ -1,9 +1,10 @@
 package lt.codeacademy.controllers;
 
 import lt.codeacademy.dao.UserRepository;
+import lt.codeacademy.dto.UserDto;
+import lt.codeacademy.dto_service.UserDtoService;
 import lt.codeacademy.model.User;
 import lt.codeacademy.service.UserService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,9 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private UserDtoService userDtoService;
+
     @RequestMapping(value = "/users", method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
@@ -29,14 +33,6 @@ public class UserController {
         return userList;
     }
 
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET,
-            produces = "application/json")
-    @ResponseBody
-    public User getUserById(@PathVariable long userId) {
-        return userRepository.findOne(userId);
-    }
-
-
     @RequestMapping(value = "/user", method = RequestMethod.POST,
             produces = "application/json")
     @ResponseBody
@@ -44,12 +40,12 @@ public class UserController {
         return userService.save(user);
     }
 
-    @RequestMapping(value = "/user/{userName}/{userPassword}", method = RequestMethod.GET,
+    @RequestMapping(value = "/user/{userName}", method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
-    public User getUser(@PathVariable String userName,
-                        @PathVariable String userPassword) {
-        return userRepository.findUserByNameAndPassword(userName, userPassword);
+    public UserDto getUser(@PathVariable String userName) {
+        User user = userRepository.findUserByName(userName);
+        return userDtoService.convertToUserDto(user);
     }
 
 

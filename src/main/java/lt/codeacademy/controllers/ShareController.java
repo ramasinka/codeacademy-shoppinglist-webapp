@@ -5,7 +5,7 @@ import lt.codeacademy.dto.ShoppingListDto;
 import lt.codeacademy.model.ShareSummary;
 import lt.codeacademy.model.ShoppingList;
 import lt.codeacademy.service.ShareService;
-import lt.codeacademy.service.ShoppingListDtoService;
+import lt.codeacademy.dto_service.ShoppingListDtoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

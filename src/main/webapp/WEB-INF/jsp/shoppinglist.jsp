@@ -21,7 +21,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Shop Item - Start Bootstrap Template</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
@@ -30,9 +29,13 @@
 <body>
 <!-- Navigation -->
 <jsp:include page="../jsp/header.jsp"/>
-
 <!-- Page Content -->
 <div class="container">
+    <div class="row">
+        <div class="col">
+            <p id="test"></p>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-3">
             <table class="table  table-inverse"
@@ -152,7 +155,8 @@
                                class="form-listname form-control" id="form-listname">
                     </div>
                     <button type="submit" class="btn"
-                            onclick="createShoppingList(document.getElementById('form-listname'), <%= session.getAttribute("username") %>)">
+
+                            onclick="createShoppingList(document.getElementById('form-listname'),<%= request.getUserPrincipal().getName()%>)">
                         Create
                     </button>
                 </div>
@@ -381,26 +385,27 @@
 <script src="../../vendor/bootstrap/js/bootstrap-table.js"></script>
 <script src="../../vendor/bootstrap/css/bootstrap-table.css"></script>
 <script src="../../css/spiner.css"></script>
-
 <script>
-    var userId = '<%=session.getAttribute("userid")%>';
+
+    var userName = '<%= request.getUserPrincipal().getName() %>';
 
     $(document).ready(function () {
+        $.getJSON("/user/" + userName, function (json) {
+            userId = json.id;
+            sessionStorage.setItem("userId", json.id);
+        });
+
+        var userId = sessionStorage.getItem("userId");
+
         $.getJSON("/getShoppingLists/" + userId, function (json) {
             $('#tableLists').bootstrapTable({
                 data: json
             });
             if (json.length !== 0) {
                 var listId = sessionStorage.getItem("listId");
-                /*    if (listId != null) {
-                        getItemsByShoppingList(listId);
-                        console.log(listId);
-                    } else {*/
-                console.log(json[0]);
                 getItemsByShoppingList(json[0].id);
                 sessionStorage.setItem("listId", json[0].id);
                 appendData(listId, json[0].name)
-                // }
             }
         });
 
@@ -411,9 +416,8 @@
         });
 
 
-
-
     });
+
 
     $(function () {
         var action;

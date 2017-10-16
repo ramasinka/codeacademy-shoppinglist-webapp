@@ -1,7 +1,5 @@
 
 "<script type='text/javascript' src='productitem.js'></script>"
-
-
 function appendData(id, listName) {
     $("#listid").val(id);
     $("#listNameToDisplay").empty();

@@ -1,4 +1,4 @@
-package lt.codeacademy.service;
+package lt.codeacademy.dto_service;
 
 import lt.codeacademy.dto.ShoppingListDto;
 import lt.codeacademy.model.ShoppingList;

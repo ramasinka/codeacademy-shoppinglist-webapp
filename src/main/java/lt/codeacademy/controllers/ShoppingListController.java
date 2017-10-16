@@ -5,7 +5,7 @@ import lt.codeacademy.dao.UserRepository;
 import lt.codeacademy.dto.ShoppingListDto;
 import lt.codeacademy.model.ShoppingList;
 import lt.codeacademy.model.User;
-import lt.codeacademy.service.ShoppingListDtoService;
+import lt.codeacademy.dto_service.ShoppingListDtoService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;

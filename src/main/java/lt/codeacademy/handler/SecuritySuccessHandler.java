@@ -27,10 +27,10 @@ public class SecuritySuccessHandler implements AuthenticationSuccessHandler {
         User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String userName = authUser.getUsername();
-        long userId = userRepository.findUserByNameAndPassword(userName, authUser.getPassword()).getId();
+//        long userId = userRepository.findUserByName(userName);
 
         session.setAttribute("username", userName);
-        session.setAttribute("userid", userId);
+//        session.setAttribute("userid", userId);
         session.setAttribute("user", authUser);
 
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);

@@ -19,7 +19,7 @@ public class RegisterService {
     private RoleService roleService;
 
     public User registerUser(User user) {
-        if (userRepository.findUserByNameAndPassword(user.getName(), user.getPassword()) != null) {
+        if (userRepository.findUserByName(user.getName()) != null) {
             throw new RuntimeException("User exists with name: " + user.getName() + ". Please try again!");
         } else {
             List<Role> roleList = new ArrayList<>();
