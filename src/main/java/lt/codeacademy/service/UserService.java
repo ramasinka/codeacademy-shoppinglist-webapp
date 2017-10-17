@@ -31,8 +31,10 @@ public class UserService {
     }
 
     public User save(User user) {
+        if(user.getPassword() == null){
+            user.setPassword("angularTest");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
-
     }
 }

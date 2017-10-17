@@ -390,7 +390,7 @@
     var userName = '<%= request.getUserPrincipal().getName() %>';
 
     $(document).ready(function () {
-        $.getJSON("/user/" + userName, function (json) {
+        $.getJSON("/userByName/" + userName, function (json) {
             userId = json.id;
             sessionStorage.setItem("userId", json.id);
         });
