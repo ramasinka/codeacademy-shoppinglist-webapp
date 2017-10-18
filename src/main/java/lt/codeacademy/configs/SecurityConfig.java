@@ -10,6 +10,11 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 
 @Configuration
 @EnableOAuth2Sso
@@ -77,10 +82,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/login**", "/", "/signin/**","/signup/**", "/users/**", "/createUser", "/user/**")
+                .antMatchers("/login/**", "/signin/**", "/signup/**", "/users/**", "/createUser", "/user/**", "/logout/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
+                .and().logout().logoutSuccessUrl("http://localhost:8081/auth/logout")
                 .and().csrf().disable();
     }
 

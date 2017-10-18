@@ -82,8 +82,9 @@
 
 <script>
     function logOut() {
-        //Remove session
-        '<$session = null$>'
+        $.getJSON("http://localhost:8081/auth/logout", function (json) {
+            console.log("LOG OUT SUCCESS!!!");
+        });
         sessionStorage.removeItem("listId");
         sessionStorage.removeItem("userId");
     }
