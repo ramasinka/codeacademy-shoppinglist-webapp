@@ -1,12 +1,18 @@
 package lt.codeacademy.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-
+@Getter
+@Setter
+@NoArgsConstructor
 public class ShoppingList implements Serializable {
 
     @Id
@@ -19,38 +25,5 @@ public class ShoppingList implements Serializable {
 
     @ManyToOne(targetEntity = User.class)
     private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<ProductItem> getProductsList() {
-        return productsList;
-    }
-
-    public void setProductsList(List<ProductItem> productsList) {
-        this.productsList = productsList;
-    }
-
 }
 
