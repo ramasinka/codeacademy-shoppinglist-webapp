@@ -380,6 +380,7 @@
 
 <!--JavaScript -->
 <script src="../../js/shoppinglist.js"></script>
+<script src="../../js/headers.js"></script>
 <script src="../../js/productitem.js"></script>
 <script src="../../js/share.js"></script>
 <script src="../../vendor/bootstrap/js/bootstrap-table.js"></script>
@@ -388,7 +389,6 @@
 <script>
 
     var userName = '<%= request.getUserPrincipal().getName() %>';
-
     $(document).ready(function () {
         $.getJSON("/userByName/" + userName, function (json) {
             userId = json.id;

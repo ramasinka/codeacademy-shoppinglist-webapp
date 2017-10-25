@@ -16,10 +16,10 @@ public class WebController {
         return "index";
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "index";
-    }
+//    @GetMapping("/login")
+//    public String loginPage() {
+//        return "login";
+//    }
 
     @GetMapping("/main")
     public String mainPage() {

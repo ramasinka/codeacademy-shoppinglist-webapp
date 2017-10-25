@@ -12,9 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableOAuth2Sso
@@ -80,9 +82,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
  }*/
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**")
+        http
                 .authorizeRequests()
-                .antMatchers("/login/**", "/signin/**", "/signup/**", "/users/**", "/createUser", "/user/**", "/logout/**")
+                .antMatchers("/signin/**", "/signup/**", "/users/**", "/createUser", "/user/**", "/logout/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -102,4 +104,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/css/**", "/js/**", "/images/**", "/assets/**", "/vendor/**");
     }
 
+//    private static class OAuthRequestedMatcher implements RequestMatcher {
+//        public boolean matches(HttpServletRequest request) {
+//            // Determine if the resource called is "/api/**"
+//            String path = request.getServletPath();
+//            if (path.length() >= 5) {
+//                path = path.substring(0, 5);
+//                boolean isApi = path.equals("/api/");
+//                return isApi;
+//            } else return false;
+//        }
+//    }
 }
