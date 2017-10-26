@@ -84,12 +84,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/signin/**", "/signup/**", "/users/**", "/createUser", "/user/**", "/logout/**")
+                .antMatchers("/signin/**", "/signup/**", "/users/**", "/createUser", "/user/**", "/logout/**", "/tokenas/**", "/login/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
-                .and().logout().logoutSuccessUrl("http://localhost:8081/auth/logout")
-                .and().csrf().disable();
+                .and().logout().logoutSuccessUrl("http://localhost:8081/auth/logout");
+//                .and().csrf().disable();
     }
 
     @Bean

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class WebController {
@@ -16,10 +17,11 @@ public class WebController {
         return "index";
     }
 
-//    @GetMapping("/login")
-//    public String loginPage() {
-//        return "login";
-//    }
+    @GetMapping("/tokenas/generate")
+    public String generateTokenPage(HttpServletRequest request, HttpServletResponse response) {
+        response.addHeader("code", request.getParameter("code"));
+        return "token";
+    }
 
     @GetMapping("/main")
     public String mainPage() {

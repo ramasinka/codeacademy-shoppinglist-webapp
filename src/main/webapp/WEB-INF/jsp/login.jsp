@@ -10,7 +10,7 @@
 
 <body>
 <div>test</div>
-<script>getAccessTokenFromUrl();</script>
+<script>getAuthorizaitonCode();</script>
 </body>
 
 </html>
