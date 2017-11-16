@@ -4,7 +4,7 @@ import lt.codeacademy.dao.ShareRepository;
 import lt.codeacademy.dto.ShoppingListDto;
 import lt.codeacademy.model.ShareSummary;
 import lt.codeacademy.model.ShoppingList;
-import lt.codeacademy.service.ShareService;
+import lt.codeacademy.service.impl.ShareServiceImpl;
 import lt.codeacademy.dto_service.ShoppingListDtoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class ShareController {
     public static final String APPLICATION_JSON = "application/json";
 
     @Resource
-    private ShareService shareService;
+    private ShareServiceImpl shareServiceImpl;
 
     @Resource
     private ShareRepository shareRepository;
@@ -32,7 +32,7 @@ public class ShareController {
     public ShareSummary shareShoppingList(@RequestBody ShareSummary shareSummary) {
         shareSummary.setDate(new Date());
         shareSummary.setStatus("notConfirmed");
-        shareService.shareShoppingList(shareSummary);
+        shareServiceImpl.shareShoppingList(shareSummary);
         return shareSummary;
     }
 
@@ -46,14 +46,14 @@ public class ShareController {
     @ResponseBody
     public ShareSummary confirmShare(@PathVariable long id) {
         ShareSummary shareSummary = shareRepository.findOne(id);
-        shareService.confirmShare(shareSummary);
+        shareServiceImpl.confirmShare(shareSummary);
         return shareSummary;
     }
 
     @RequestMapping(value = "/getSharedList/{userId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseBody
     public List<ShoppingListDto> getSharedLists(@PathVariable long userId) {
-        List<ShoppingList> sharedShoppingLists = shareService.findSharedShoppingLists(userId);
+        List<ShoppingList> sharedShoppingLists = shareServiceImpl.findSharedShoppingLists(userId);
         return shoppingListDtoService.convertToShoppingListDtoList(sharedShoppingLists);
     }
 

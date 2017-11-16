@@ -6,6 +6,7 @@ import lt.codeacademy.dto.ShoppingListDto;
 import lt.codeacademy.model.ShoppingList;
 import lt.codeacademy.model.User;
 import lt.codeacademy.dto_service.ShoppingListDtoService;
+import lt.codeacademy.service.ShoppingListService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,10 @@ import java.util.List;
 @ComponentScan({"lt.codeacademy.dao"})
 public class ShoppingListController {
 
-    public static final String APPLICATION_JSON = "application/json";
+    private static final String APPLICATION_JSON = "application/json";
+
     @Resource
-    @Qualifier("shoppingListRepository")
-    private ShoppingListRepository shoppingListRepository;
+    private ShoppingListService shoppingListService;
 
     @Resource
     @Qualifier("userRepository")
@@ -31,20 +32,17 @@ public class ShoppingListController {
     private ShoppingListDtoService shoppingListDtoService;
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/getShoppingLists", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseBody
     public List<ShoppingListDto> getAllShoppingLists() {
-        List<ShoppingList> shoppingLists = (List<ShoppingList>) shoppingListRepository.findAll();
-        List<ShoppingListDto> shoppingListDtos = shoppingListDtoService.convertToShoppingListDtoList(shoppingLists);
-        return shoppingListDtos;
+        List<ShoppingList> shoppingLists = (List<ShoppingList>) shoppingListService.getAllShoppingLists();
+        return shoppingListDtoService.convertToShoppingListDtoList(shoppingLists);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/getShoppingList/{id}", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseBody
     public ShoppingListDto getShoppingList(@PathVariable long id) {
-        ShoppingList shoppingList = shoppingListRepository.findOne(id);
+        ShoppingList shoppingList = shoppingListService.getShoppingList(id);
         ShoppingListDto shoppingListDto = new ShoppingListDto(shoppingList.getName(), shoppingList.getUser().getId());
         return shoppingListDto;
     }
@@ -53,28 +51,23 @@ public class ShoppingListController {
     @ResponseBody
     public ShoppingList createShoppingList(@RequestParam("listName") String listName,
                                            @RequestParam("userId") long userId) {
-        ShoppingList shoppingList = new ShoppingList();
-        shoppingList.setUser(userRepository.findOne(userId));
-        shoppingList.setName(listName);
-        shoppingListRepository.save(shoppingList);
-        return shoppingList;
+        return shoppingListService.createShoppingList(listName, userId);
     }
 
     @RequestMapping(value = "/getShoppingLists/{userId}", method = RequestMethod.GET, produces = APPLICATION_JSON)
     @ResponseBody
     public List<ShoppingListDto> getShoppingListsByUser(@PathVariable("userId") long userId) {
-        User user = userRepository.findOne(userId);
-        List<ShoppingList> shoppingLists = shoppingListRepository.findByUser(user);
+        List<ShoppingList> shoppingLists = shoppingListService.getShoppingListsByUser(userId);
         return shoppingListDtoService.convertToShoppingListDtoList(shoppingLists);
     }
 
     @RequestMapping(value = "/removeShoppingList", method = RequestMethod.POST, produces = APPLICATION_JSON)
     public void removeShoppingList(@RequestParam("listId") long listId) {
-        shoppingListRepository.delete(listId);
+        shoppingListService.removeShoppingList(listId);
     }
 
     @RequestMapping(value = "/updateShoppingList", method = RequestMethod.POST, produces = APPLICATION_JSON)
-    public void updateShoppingList(@RequestParam("listId") Long listId, @RequestParam("listName") String listName) {
-        shoppingListRepository.updateShoppingList(listId, listName);
+    public ShoppingList updateShoppingList(@RequestParam("listId") Long listId, @RequestParam("listName") String listName) {
+        return shoppingListService.updateShoppingList(listId, listName);
     }
 }

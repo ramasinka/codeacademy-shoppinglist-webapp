@@ -9,18 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class WebController {
 
-    @GetMapping("/")
+    @GetMapping("/sigIn")
     public String indexPage(HttpServletRequest request) {
         if (request.getSession().getAttribute("userid") != null) {
             return "main";
         }
         return "index";
-    }
-
-    @GetMapping("/tokenas/generate")
-    public String generateTokenPage(HttpServletRequest request, HttpServletResponse response) {
-        response.addHeader("code", request.getParameter("code"));
-        return "token";
     }
 
     @GetMapping("/main")

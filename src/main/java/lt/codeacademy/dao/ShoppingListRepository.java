@@ -16,5 +16,5 @@ public interface ShoppingListRepository extends CrudRepository<ShoppingList, Lon
     @Modifying
     @Query("Update ShoppingList s SET s.name=:listName WHERE s.id=:listId")
     @Transactional
-    void updateShoppingList(@Param("listId") Long listId, @Param("listName") String listName);
+    ShoppingList updateShoppingList(@Param("listId") Long listId, @Param("listName") String listName);
 }

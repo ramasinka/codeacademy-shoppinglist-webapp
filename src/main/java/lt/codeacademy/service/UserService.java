@@ -1,40 +1,16 @@
 package lt.codeacademy.service;
 
-
-import lt.codeacademy.dao.UserRepository;
 import lt.codeacademy.model.User;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+public interface UserService {
+    User save(User user);
 
-@Service
-public class UserService {
+    Iterable<User> getAllUsers();
 
-    @Resource
-    private UserRepository userRepository;
+    User getUserById(long id);
 
-    @Resource
-    private PasswordEncoder passwordEncoder;
+    User getUserByName(String name);
 
-    public boolean userExistsByEmail(String email) {
-        User user = userRepository.findUserByEmail(email);
-        if (user == null) {
-            throw new RuntimeException("User with email:" + email + " does not exists");
-        }
-        return true;
-    }
+    User updateUser(User user, long id);
 
-    public User findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
-    }
-
-    public User save(User user) {
-        if(user.getPassword() == null){
-            user.setPassword("angularTest");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
 }

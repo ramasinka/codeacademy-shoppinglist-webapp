@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Controller
+@RestController
 public class ProductItemController {
 
     private static final String APPLICATION_JSON = "application/json";

@@ -7,15 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="codeacademy-shoppinglist-authorization-server" />
-        <module name="codeacademy-shoppinglist-mail" />
-        <module name="codeacademy-shoppinglist-webapp" />
+        <module name="lt.codeacademy.shoppinglist.resource" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="codeacademy-shoppinglist-authorization-server" target="1.8" />
-      <module name="codeacademy-shoppinglist-mail" target="1.8" />
-      <module name="codeacademy-shoppinglist-webapp" target="1.8" />
-      <module name="lt.codeacademy.shoppinglist" target="1.5" />
+      <module name="lt.codeacademy.shoppinglist.resource" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

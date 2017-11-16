@@ -1,4 +1,4 @@
-package lt.codeacademy.service;
+package lt.codeacademy.service.impl;
 
 import lt.codeacademy.dao.ShareRepository;
 import lt.codeacademy.model.ShareSummary;
@@ -10,33 +10,33 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class ShareService {
+public class ShareServiceImpl {
 
     @Resource
     private ShareRepository shareRepository;
 
     @Resource
-    private ShareService shareService;
+    private ShareServiceImpl shareServiceImpl;
 
     @Resource
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Resource
-    private ShoppingListService shoppingListService;
+    private ShoppingListServiceImpl shoppingListServiceImpl;
 
     @Resource
-    private MailService mailService;
+    private MailServiceImpl mailServiceImpl;
 
     public ShareSummary shareShoppingList(ShareSummary shareSummary) {
         String email = shareSummary.getEmail();
-        if (userService.userExistsByEmail(email)) {
-            User toUser = userService.findUserByEmail(email);
-            if (!shareService.isShoppingListShare(shareSummary)) {
-                if (shoppingListService.isShoppingListExists(shareSummary.getListId())) {
+        if (userServiceImpl.userExistsByEmail(email)) {
+            User toUser = userServiceImpl.findUserByEmail(email);
+            if (!shareServiceImpl.isShoppingListShare(shareSummary)) {
+                if (shoppingListServiceImpl.isShoppingListExists(shareSummary.getListId())) {
                     shareSummary.setToUserId(toUser.getId());
                     shareRepository.save(shareSummary);
-                    ShoppingList shoppingList = shoppingListService.findShoppingListById(shareSummary.getListId());
-                    mailService.sendMail(shoppingList.getName(), shareSummary, email);
+                    ShoppingList shoppingList = shoppingListServiceImpl.findShoppingListById(shareSummary.getListId());
+                    mailServiceImpl.sendMail(shoppingList.getName(), shareSummary, email);
                 }
             }
         }

@@ -3,20 +3,24 @@ server:
     session:
       cookie:
         name: UI2SESSION
+#security:
+#  basic:
+#    enabled: false
+#  oauth2:
+#    client:
+#      clientId: ClientId
+#      clientSecret: secret
+#      accessTokenUri: http://localhost:8082/auth/oauth/token
+#      userAuthorizationUri: http://localhost:8082/auth/oauth/authorize
+#      use-current-uri: false
+#      pre-established-redirect-uri: http://localhost:8084/tokenas
+##
+##      authorized-grant-types: implicit
+#      auto-approve-scopes: true
+#    resource:
+##      filter-order: 3
+#      userInfoUri: http://localhost:8082/auth/rest/hello/principal
+
 security:
   basic:
     enabled: false
-  oauth2:
-    client:
-      clientId: ClientId
-      clientSecret: secret
-      accessTokenUri: http://localhost:8082/auth/oauth/token
-      userAuthorizationUri: http://localhost:8082/auth/oauth/authorize
-      use-current-uri: false
-      pre-established-redirect-uri: http://localhost:8084/tokenas
-#
-#      authorized-grant-types: implicit
-      auto-approve-scopes: true
-    resource:
-#      filter-order: 3
-      userInfoUri: http://localhost:8082/auth/rest/hello/principal

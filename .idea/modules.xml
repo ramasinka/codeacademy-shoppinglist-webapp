@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../codeacademy-shoppinglist-authorization-server/codeacademy-shoppinglist-authorization-server.iml" filepath="$PROJECT_DIR$/../codeacademy-shoppinglist-authorization-server/codeacademy-shoppinglist-authorization-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../codeacademy-shoppinglist-mail/codeacademy-shoppinglist-mail.iml" filepath="$PROJECT_DIR$/../codeacademy-shoppinglist-mail/codeacademy-shoppinglist-mail.iml" />
-      <module fileurl="file://$PROJECT_DIR$/codeacademy-shoppinglist-webapp.iml" filepath="$PROJECT_DIR$/codeacademy-shoppinglist-webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lt.codeacademy.shoppinglist.resource.iml" filepath="$PROJECT_DIR$/lt.codeacademy.shoppinglist.resource.iml" />
     </modules>
   </component>
 </project>

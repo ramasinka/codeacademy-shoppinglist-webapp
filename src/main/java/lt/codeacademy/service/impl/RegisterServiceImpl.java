@@ -1,4 +1,4 @@
-package lt.codeacademy.service;
+package lt.codeacademy.service.impl;
 
 import lt.codeacademy.dao.UserRepository;
 import lt.codeacademy.model.Role;
@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class RegisterService {
+public class RegisterServiceImpl {
 
     @Resource
     private UserRepository userRepository;
 
     @Resource
-    private RoleService roleService;
+    private RoleServiceImpl roleService;
 
     public User registerUser(User user) {
         if (userRepository.findUserByName(user.getName()) != null) {

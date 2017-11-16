@@ -1,4 +1,4 @@
-package lt.codeacademy.service;
+package lt.codeacademy.service.impl;
 
 import lt.codeacademy.model.ShareSummary;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 @Service
-public class MailService {
+public class MailServiceImpl {
 
     public void sendMail(String listName, ShareSummary shareSummary, String recipientEmail) {
         final String username = "codeacademystudent11@gmail.com";

@@ -1,4 +1,4 @@
-package lt.codeacademy.configs;
+package lt.codeacademy.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
@@ -80,22 +80,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
  }*/
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/signin/**", "/signup/**", "/users/**", "/createUser", "/user/**", "/logout/**", "/tokenas/**", "/login/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and().logout().logoutSuccessUrl("http://localhost:8081/auth/logout");
-//                .and().csrf().disable();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/signin/**", "/signup/**", "/users/**", "/createUser", "/user/**", "/logout/**", "/tokenas/**", "/login/**")
+//                .permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                .and().logout().logoutSuccessUrl("http://localhost:8081/auth/logout");
+////                .and().csrf().disable();
+//    }
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {

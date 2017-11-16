@@ -1,26 +1,20 @@
 package lt.codeacademy.service;
 
-import lt.codeacademy.dao.ShoppingListRepository;
 import lt.codeacademy.model.ShoppingList;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import java.util.List;
 
-@Service
-public class ShoppingListService {
+public interface ShoppingListService {
 
-    @Resource
-    ShoppingListRepository shoppingListRepository;
+    Iterable<ShoppingList> getAllShoppingLists();
 
-    public boolean isShoppingListExists(long listId) {
-        ShoppingList shoppingList = shoppingListRepository.findOne(listId);
-        if (shoppingList == null) {
-            throw new RuntimeException("Shopping list does not exist");
-        }
-        return true;
-    }
+    ShoppingList getShoppingList(long id);
 
-    public ShoppingList findShoppingListById(long listId) {
-        return shoppingListRepository.findOne(listId);
-    }
+    ShoppingList createShoppingList(String listName, long userId);
+
+    List<ShoppingList> getShoppingListsByUser(long userId);
+
+    void removeShoppingList(long listId);
+
+    ShoppingList updateShoppingList(long listId, String listName);
 }

@@ -1,6 +1,5 @@
 package lt.codeacademy.controllers;
 
-import lt.codeacademy.dao.UserRepository;
 import lt.codeacademy.dto.UserDto;
 import lt.codeacademy.dto_service.UserDtoService;
 import lt.codeacademy.model.User;
@@ -15,9 +14,6 @@ import java.util.List;
 public class UserController {
 
     @Resource
-    private UserRepository userRepository;
-
-    @Resource
     private UserService userService;
 
     @Resource
@@ -27,11 +23,11 @@ public class UserController {
             produces = "application/json")
     @ResponseBody
     public List<UserDto> getAlLUsers() {
-        Iterable<User> users = userRepository.findAll();
+        Iterable<User> users = userService.getAllUsers();
         return userDtoService.convertToUserDtoList(users);
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST,
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST,
             produces = "application/json")
     @ResponseBody
     public void createUser(@RequestBody User user) {
@@ -43,7 +39,7 @@ public class UserController {
             produces = "application/json")
     @ResponseBody
     public UserDto getUserById(@PathVariable long id) {
-        User user = userRepository.findOne(id);
+        User user = userService.getUserById(id);
         return userDtoService.convertToUserDto(user);
     }
 
@@ -51,17 +47,17 @@ public class UserController {
             produces = "application/json")
     @ResponseBody
     public UserDto getUserByName(@PathVariable String name) {
-        User user = userRepository.findUserByName(name);
+        User user = userService.getUserByName(name);
         return userDtoService.convertToUserDto(user);
     }
+
     @RequestMapping(value = "/user/update/{id}", method = RequestMethod.POST,
             produces = "application/json")
     @ResponseBody
     public UserDto updateUser(@RequestBody User user,
                               @PathVariable long id) {
 
-        userRepository.updateUser(id, user.getEmail(), user.getName());
-        return userDtoService.convertToUserDto(user);
+        User updatedUser = userService.updateUser(user, id);
+        return userDtoService.convertToUserDto(updatedUser);
     }
-
 }
